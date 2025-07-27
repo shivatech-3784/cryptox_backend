@@ -8,7 +8,7 @@ const userSchema = new Schema({
         required: true,
         maxlength: 50
     },
-    fullName:{
+    fullname:{
         type:String,
         required:true,
         maxlength:50
@@ -28,17 +28,17 @@ const userSchema = new Schema({
     password:{
         type:String,
         minlength:5,
-        require:true
+        require:[true,'password is required']
     }
 
 }, { timestamps: true })
 
 
 // here instead of this function if we use arrow function it doesnot know the context knowing the context is necessary here while encrypting the password
-userSchema.pre("save", async function (next){
+userSchema.pre("save", async function (next) {
     if(!this.isModified("password")) return next();
 
-    this.password = bcrypt.hash(this.password,10)
+    this.password = await bcrypt.hash(this.password, 10)
     next()
 })
 
@@ -51,7 +51,7 @@ userSchema.methods.generateAccessToken = function(){
             _id: this._id,
             email: this.email,
             username: this.username,
-            fullName: this.fullName
+            fullname: this.fullname
         },
         process.env.ACCESS_TOKEN_SECRET,
         {
