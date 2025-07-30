@@ -15,20 +15,20 @@ const userSchema = new Schema({
     },
     age:{
         type:Number,
-        require:true
+        required:true
     },
     mob:{
         type:Number,
-        require:true
+        required:true
     },
     email:{
         type:String,
-        require:true
+        required:true
     },
     password:{
         type:String,
         minlength:5,
-        require:[true,'password is required']
+        required:[true,'password is required']
     }
 
 }, { timestamps: true })

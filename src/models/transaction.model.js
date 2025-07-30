@@ -1,38 +1,43 @@
 import mongoose from "mongoose"
 
 const transactionSchema = new mongoose.Schema(
-    {
-        img: {
-            type: String,
-            require: true
-        },
-        CoinId: { 
-            type: String,
-            require: true
-        },
-        CoinName: { 
-            type: String, 
-            require: true
-        },
-        Quantity: { 
-            type: Number, 
-            require: true 
-        },
-        Amount: { 
-            type: Number, 
-            require: true 
-        },
-        Price: { 
-            type: Number, 
-            require: true 
-        },
-        Date: { 
-            type: String 
-        },
-        type: { 
-            type: String 
-        },
+  {
+    img: {
+      type: String,
+      required: true
+    },
+    coinId: {
+      type: String,
+      required: true
+    },
+    coinName: {
+      type: String,
+      required: true
+    },
+    quantity: {
+      type: Number,
+      required: true
+    },
+    amount: {
+      type: Number,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    type: {
+      type: String,
+      enum: ["buy", "sell"],
+      required: true
+    },
+    userId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      required: true
     }
-    , { timestamps: true });
+  },
+  { timestamps: true }
+);
 
-export const Transaction = mongoose.model("Transaction", transactionSchema);
+export const Transaction = mongoose.model("Transaction",transactionSchema);

@@ -16,11 +16,17 @@ app.use(cookieParser())
 
 //routes import
 import userRouter from "./routes/user.routes.js"
+import coinRouter from "./routes/coin.routes.js"
+import wallerRouter from "./routes/wallet.routes.js"
+import transactionRouter from "./routes/transaction.routes.js"
 
 
 //routes declaration
 
 app.use("/cryptoX/api/v1/users",userRouter)
+app.use("/cryptoX/api/v1/coins",coinRouter)
+app.use("/cryptoX/api/v1/wallet",wallerRouter)
+app.use("/cryptoX/api/v1/transactions",transactionRouter)   
 
 // in this way routes will form 
 // http://localhost:8000/cryptoX/api/v1/users/create
